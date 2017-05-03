@@ -47,6 +47,7 @@ $restRequest->setCustomeCurlParams(array(
 
     $response = json_decode($restRequest->getResponseBody(), true);
 $customerInfo =  $restRequest->getResponseBody();
+echo $customerInfo;
 if(isset($response["errors"])){
     
    $mainURL = "https://72df1699ba16cf47c9b34ad6e5e3bb39:29ea588554469504de01b4fac8bdf6c5@mokaboka-dev.myshopify.com/admin/customers/search.json?query=".$customerDataSet["email"];

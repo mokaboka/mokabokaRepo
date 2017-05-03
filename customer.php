@@ -11,7 +11,7 @@ header('Pragma: no-cache');
 error_reporting(0);
 //// Config part
 include 'restRequest.php';
-define('SHOPIFY_URL', "https://2673dd5ade978536d923635dc2836e8e:1b609db5984a1a56ab812b66d35aa561@mokaboka.myshopify.com/admin/customers.json");
+define('SHOPIFY_URL', "https://72df1699ba16cf47c9b34ad6e5e3bb39:29ea588554469504de01b4fac8bdf6c5@mokaboka-dev.myshopify.com/admin/customers.json");
 ////////////////////////////////////////////////////////////////
 //global parameter
 $restRequest = new restRequest();
@@ -49,7 +49,7 @@ $restRequest->setCustomeCurlParams(array(
 $customerInfo =  $restRequest->getResponseBody();
 if(isset($response["errors"])){
     
-   $mainURL = "https://2673dd5ade978536d923635dc2836e8e:1b609db5984a1a56ab812b66d35aa561@mokaboka.myshopify.com/admin/customers/search.json?query=".$customerDataSet["email"];
+   $mainURL = "https://72df1699ba16cf47c9b34ad6e5e3bb39:29ea588554469504de01b4fac8bdf6c5@mokaboka-dev.myshopify.com/admin/customers/search.json?query=".$customerDataSet["email"];
    $restRequest->setVerb('GET');
    $restRequest->setUrl($mainURL);
    $restRequest->execute();

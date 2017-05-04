@@ -12,7 +12,7 @@ require_once __DIR__ . '/lib/google/vendor/autoload.php';
 define('SPREAD_SHEET_ID','12RzmAIZYcSZUWcRNR4aAUVcbXEyDetj2Ngw6KEjByhE');
 define('OAUTH2_CLIENT_ID', '11797097241-elvbcqiir3fdgai93jhkjcgsk1vp5kum.apps.googleusercontent.com');
 define('OAUTH2_CLIENT_SECRET', '7WO8IYUIfx0nOHxRuPVgDq13');
-define('SHOPIFY_URL', "https://72df1699ba16cf47c9b34ad6e5e3bb39:29ea588554469504de01b4fac8bdf6c5@mokaboka-dev.myshopify.com/admin/orders/");
+define('SHOPIFY_URL', "https://2673dd5ade978536d923635dc2836e8e:1b609db5984a1a56ab812b66d35aa561@mokaboka.myshopify.com/admin/orders/");
 ////////////////////////////////////////////////////////////////
 //global parameter
 $restRequest = new restRequest();

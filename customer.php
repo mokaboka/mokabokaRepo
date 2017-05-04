@@ -25,8 +25,8 @@ $postCustomerDataset ['customer']['verified_email'] = true;
 $postCustomerDataset ['customer']['addresses'] = array();
 $postCustomerDataset ['customer']['addresses'][0]['first_name'] = $customerDataSet['first_name'];
 $postCustomerDataset ['customer']['addresses'][0]['last_name'] = $customerDataSet['last_name'];
-$postCustomerDataset ['customer']['password'] = $customerDataSet['passwordfield'];
-$postCustomerDataset ['customer']['password_confirmation'] = $customerDataSet['passwordfield'];
+$postCustomerDataset ['customer']['password'] = $customerDataSet['password'];
+$postCustomerDataset ['customer']['password_confirmation'] = $customerDataSet['password'];
 $postCustomerDataset ['customer']['send_email_welcome'] = true;
 ////Send to shopify to update Order
 $customerToUpdate = json_encode($postCustomerDataset);

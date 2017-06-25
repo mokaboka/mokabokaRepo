@@ -45,7 +45,7 @@ $count = count($values);
 var_dump($count);
 if (count($values) == 0) {
 } else {
-    for ($i = count($values); $i =0; $i--) {
+    for ($i =$count; $i <=0; $i--) {
         $row = $values[$i];
       $count = $count - 1;
       var_dump($row);

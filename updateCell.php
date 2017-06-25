@@ -41,12 +41,11 @@ if ($client->getAccessToken()) {
 $range = 'OrdersBeforePaid!A:T';
 $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $values = $response->getValues();
-rsort($values);
 $count = count($values);
 var_dump($count);
 if (count($values) == 0) {
 } else {
-    for ($i = 0; $i < count($values); $i++) {
+    for ($i = count($values); $i =0; $i--) {
         $row = $values[$i];
       $count = $count - 1;
       var_dump($row);

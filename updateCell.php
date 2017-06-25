@@ -43,7 +43,6 @@ $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $values = $response->getValues();
 rsort($values);
 $count = count($values);
-var_dump($count);
 if (count($values) == 0) {
 } else {
     

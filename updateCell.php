@@ -39,15 +39,6 @@ if ($client->getAccessToken()) {
   $spreadsheetId = '12RzmAIZYcSZUWcRNR4aAUVcbXEyDetj2Ngw6KEjByhE';
 
   
-  // The A1 notation of the values to clear.
-$range = 'OrdersBeforePaid!A2:T';
-
-// TODO: Assign values to desired properties of `requestBody`:
-$requestBody = new Google_Service_Sheets_ClearValuesRequest();
-
-$response = $service->spreadsheets_values->clear($spreadsheetId, $range, $requestBody);
-exit();
-  
 $range = 'OrdersBeforePaid!A:T';
 $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $values = $response->getValues();

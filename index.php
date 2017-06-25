@@ -64,7 +64,6 @@ if (count($values) == 0) {
     }
   }
 }
-var_dump($rowData );
 if(sizeof($rowData) > 0 ){
 //array post Parameter
 $postOrderInfo = array();
@@ -88,6 +87,8 @@ $postNoteData ['order']['note_attributes']['Child 2 Hair Style'] = $rowData[16];
 $postNoteData ['order']['note_attributes']['Child 2 Skin Tone'] = $rowData[17];
 $postNoteData ['order']['note_attributes']['Child 2 Favorite color'] = $rowData[18];
 $postNoteData ['order']['note_attributes']['Child 2 to 1'] = $rowData[19];
+$postNoteData ['order']['note_attributes']['Dedication'] = $rowData[20];
+$postNoteData ['order']['note_attributes']['Image'] = $rowData[21];
 
 /////write on excel 
 $values = array(
@@ -110,12 +111,16 @@ $values = array(
         ($rowData[14]!="")?$rowData[14]:"",
         ($rowData[15]!="")?$rowData[15]:"",
         ($rowData[16]!="")?$rowData[16]:"",
-        ($rowData[17]!="")?$rowData[17]:""
+        ($rowData[17]!="")?$rowData[17]:"",
+        ($rowData[18]!="")?$rowData[18]:"",
+    ($rowData[19]!="")?$rowData[19]:"",
+        ($rowData[20]!="")?$rowData[20]:"",
+        ($rowData[21]!="")?$rowData[21]:""
  // Cell values ...
     ),
     // Additional rows ...
 );
-$range = 'Orders!A2:T';
+$range = 'Orders!A2:V';
 $body = new Google_Service_Sheets_ValueRange(array(
   'values' => $values
 ));
@@ -151,9 +156,16 @@ curl_setopt($ch, CURLOPT_TIMEOUT, 15);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 $xml_response = curl_exec($ch);
-var_dump($xml_response);
 if($xml_response!=false){
+      // The A1 notation of the values to clear.
+$range = 'OrdersBeforePaid!A2:V';
+
+// TODO: Assign values to desired properties of `requestBody`:
+$requestBody = new Google_Service_Sheets_ClearValuesRequest();
+
+$response = $service->spreadsheets_values->clear(SPREAD_SHEET_ID, $range, $requestBody);
     echo "true";
+    
 }  else {
      echo "false";
 }

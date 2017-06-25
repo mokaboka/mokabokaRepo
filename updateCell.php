@@ -38,14 +38,15 @@ if ($client->getAccessToken()) {
   $service = new Google_Service_Sheets($client);
   $spreadsheetId = '12RzmAIZYcSZUWcRNR4aAUVcbXEyDetj2Ngw6KEjByhE';
 
-$range = 'OrdersBeforePaid!A:T';
+$range = 'OrdersBeforePaid!A2:T';
 $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $values = $response->getValues();
+rsort($values);
 $count = count($values);
 var_dump($count);
 if (count($values) == 0) {
 } else {
-    for ($i =$count; $i <=0; $i--) {
+    for ($i = 0; $i < count($values); $i++) {
         $row = $values[$i];
       $count = $count - 1;
       var_dump($row);

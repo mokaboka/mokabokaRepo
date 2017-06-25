@@ -49,7 +49,7 @@ if (count($values) == 0) {
     for ($i = 0; $i < count($values); $i++) {
         $row = $values[$i];
       $count = $count - 1;
-      var_dump($row);
+      var_dump($values);
       break;
     // Print columns A and E, which correspond to indices 0 and 4.
     if($row[3] === $data['email']){

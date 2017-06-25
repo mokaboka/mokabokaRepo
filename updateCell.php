@@ -38,7 +38,7 @@ if ($client->getAccessToken()) {
   $service = new Google_Service_Sheets($client);
   $spreadsheetId = '12RzmAIZYcSZUWcRNR4aAUVcbXEyDetj2Ngw6KEjByhE';
 
-$range = 'OrdersBeforePaid!A2:T';
+$range = 'OrdersBeforePaid!A:T';
 $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $values = $response->getValues();
 rsort($values);
@@ -46,14 +46,12 @@ $count = count($values);
 var_dump($count);
 if (count($values) == 0) {
 } else {
-    for ($i = 0; $i < count($values); $i++) {
-        $row = $values[$i];
+    
+  foreach ($values as $row) {
       $count = $count - 1;
-      var_dump($values);
-      break;
+  
     // Print columns A and E, which correspond to indices 0 and 4.
-    if($row[3] === $data['email']){
-        echo $row[3];
+    if($row[3] == $data['email']){
         $rowData = $row;
         break;
     }

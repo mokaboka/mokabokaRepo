@@ -46,7 +46,8 @@ $count = count($values);
 var_dump($count);
 if (count($values) == 0) {
 } else {
-  foreach ($values as $row) {
+    for ($i = 0; $i < count($values); $i++) {
+        $row = $values[$i];
       $count = $count - 1;
       var_dump($row);
       break;

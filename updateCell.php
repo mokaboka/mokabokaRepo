@@ -50,7 +50,7 @@ if (count($values) == 0) {
       echo $count;
       echo $data['email'];
     // Print columns A and E, which correspond to indices 0 and 4.
-    if($row[3] == $data['email']){
+    if($row[3] === $data['email']){
         echo $row[3];
         $rowData = $row;
         break;

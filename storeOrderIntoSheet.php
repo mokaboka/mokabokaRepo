@@ -60,14 +60,14 @@ $values = array(
         ($data["Child2SkinTone"] !="")?$data["Child2SkinTone"]:" ",
         ($data["Child2Favoritecolor"] !="")?$data["Child2Favoritecolor"]:" ",
         ($data["Child2to1"] !="")?$data["Child2to1"]:" ",
-        ($data["Image"] !="")?$data["Image"]:" ",
-        ($data["Dedication"] !="")?$data["Dedication"]:" "
+        ($data["Dedication"] !="")?$data["Dedication"]:" ",
+    ($data["Image"] !="")?$data["Image"]:" "
  // Cell values ...
     )
     // Additional rows ...
 );
 
-$range = 'OrdersBeforePaid!A2:T';
+$range = 'OrdersBeforePaid!A2:V';
 $body = new Google_Service_Sheets_ValueRange(array(
   'values' => $values
 ));

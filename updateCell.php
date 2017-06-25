@@ -42,7 +42,6 @@ $range = 'OrdersBeforePaid!A:T';
 $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $values = $response->getValues();
 rsort($values);
-var_dump(sizeof($values));
 $count = sizeof($values);
 if (count($values) == 0) {
 } else {

@@ -49,6 +49,6 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 $xml_response = curl_exec($ch);
 if($xml_response!=false){
-    die({'success':true});
+    die(json_encode(array('success' => true)));
 }
 }

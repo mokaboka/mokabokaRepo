@@ -1,9 +1,10 @@
 <?php
-die('hello Heroku');
 
 error_reporting(E_ALL);
 //global parameter
-
+echo 'hererrerererer';
+exit;
+/*
 define('SHOPIFY_URL', "");
 ////////////////////////////////////////////////////////////////
 
@@ -13,15 +14,14 @@ if(sizeof($orderDataSet) > 0 ){
     var_dump($orderDataSet);
 
 //$shopifyParamsURL = $orderDataSet['id'] . ".json";
-/*
+
 //array post Parameter
 $postNoteData ['order']['id'] = $orderDataSet['Order_ID'];
-$postNoteData ['order']['note_attributes']['Firstname'] = $orderDataSet[0];
-$postNoteData ['order']['note_attributes']['Lastname'] = $orderDataSet[1];
-$postNoteData ['order']['note_attributes']['Child 1 Name'] = $orderDataSet[4];
-$postNoteData ['order']['note_attributes']['Child 1 Gender'] = $orderDataSet[5];
+$postNoteData ['order']['note_attributes']['hat_size'] = $orderDataSet[0];
+$postNoteData ['order']['note_attributes']['shirt_size'] = $orderDataSet[1];
+$postNoteData ['order']['note_attributes']['website_address'] = $orderDataSet[4];
 
-*/
+/**/
 ////Send to shopify to update Order
 /*
 $orderToUpdate = json_encode($postNoteData);

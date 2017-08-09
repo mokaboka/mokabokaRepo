@@ -2,13 +2,14 @@
 
 error_reporting(E_ALL);
 //global parameter
-echo 'hererrerererer';
-exit;
-/*
+
 define('SHOPIFY_URL', "");
 ////////////////////////////////////////////////////////////////
 
 $orderDataSet = json_decode(file_get_contents('php://input'), true);
+
+var_dump($orderDataSet);
+exit;
 
 if(sizeof($orderDataSet) > 0 ){
     var_dump($orderDataSet);
@@ -23,12 +24,12 @@ $postNoteData ['order']['note_attributes']['website_address'] = $orderDataSet[4]
 
 /**/
 ////Send to shopify to update Order
-/*
-$orderToUpdate = json_encode($postNoteData);
-*/
-/** use a max of 256KB of RAM before going to disk */
 
-/*
+$orderToUpdate = json_encode($postNoteData);
+
+/** use a max of 256KB of RAM before going to disk
+
+
 $fp = fopen('php://temp/maxmemory:256000', 'w');
 if (!$fp) {
     die('could not open temp memory data');
@@ -52,5 +53,5 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 $xml_response = curl_exec($ch);
 if($xml_response!=false){
     //return success path
-}
 }*/
+}

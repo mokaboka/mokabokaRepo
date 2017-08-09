@@ -1,33 +1,30 @@
 <?php
 
-error_reporting(E_ALL);
+error_reporting(0);
 //global parameter
 
-define('SHOPIFY_URL', "");
+define('SHOPIFY_URL', "https://c405ef226e3e07c4eb80fcbe1b85712d:61f81d985ec32c6f6c674b7e809c1e19@selfmadeclub.myshopify.com/admin/orders.json");
 ////////////////////////////////////////////////////////////////
 
 $orderDataSet = json_decode(file_get_contents('php://input'), true);
 
-var_dump($orderDataSet);
-exit;
 
 if(sizeof($orderDataSet) > 0 ){
-    var_dump($orderDataSet);
 
 //$shopifyParamsURL = $orderDataSet['id'] . ".json";
 
 //array post Parameter
-$postNoteData ['order']['id'] = $orderDataSet['Order_ID'];
-$postNoteData ['order']['note_attributes']['hat_size'] = $orderDataSet[0];
-$postNoteData ['order']['note_attributes']['shirt_size'] = $orderDataSet[1];
-$postNoteData ['order']['note_attributes']['website_address'] = $orderDataSet[4];
+$postNoteData ['order']['id'] = $orderDataSet['order_ID'];
+$postNoteData ['order']['note_attributes']['hat_size'] = $orderDataSet['hat_size'];
+$postNoteData ['order']['note_attributes']['shirt_size'] = $orderDataSet['shirt_size'];
+$postNoteData ['order']['note_attributes']['website_address'] = $orderDataSet['website_address'];
 
 /**/
 ////Send to shopify to update Order
 
 $orderToUpdate = json_encode($postNoteData);
 
-/** use a max of 256KB of RAM before going to disk
+/** use a max of 256KB of RAM before going to disk*/
 
 
 $fp = fopen('php://temp/maxmemory:256000', 'w');
@@ -52,6 +49,6 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 $xml_response = curl_exec($ch);
 if($xml_response!=false){
-    //return success path
-}*/
+    die({'success':true});
+}
 }

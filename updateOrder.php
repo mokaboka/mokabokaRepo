@@ -28,11 +28,11 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
   $responseArr = json_decode($response, true);
   var_dump($responseArr);
   if($response==false && array_key_exists('order',$responseArr) && array_key_exists('id', $responseArr['order'])){
-    echo 'errro';
+    echo json_encode(array("success" => false, 'response'=> $response));
     exit;
   }
   else{
-    exit;
+    var_dump($responseArr['order']['id']);
     //$shopifyParamsURL = $orderDataSet['id'] . ".json";
 
     //array post Parameter
@@ -68,7 +68,7 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
     $xml_response = curl_exec($ch);
     if($xml_response!=false){
-        die(json_encode(array('success' => $xml_response, 'orderInfo'=> $postNoteData)));
+        die(json_encode(array('success' => true, 'response'=> $xml_response));
     }
   }
 }

@@ -8,7 +8,10 @@ define('SHOPIFY_URL', "https://c405ef226e3e07c4eb80fcbe1b85712d:61f81d985ec32c6f
 
 $orderDataSet = json_decode(file_get_contents('php://input'), true);
 if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
-
+  $headers = array(
+      'Accept: application/json',
+      'Content-Type: application/json',
+  );
 //get The order ID
 
 $ch1 = curl_init();
@@ -20,7 +23,8 @@ curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, 2);
 $response = curl_exec($ch1);
 if($response==false){
-
+  echo 'errro';
+  exit;
 }
 else{
 var_dump($response);
@@ -47,10 +51,7 @@ if (!$fp) {
 }
 fwrite($fp, $orderToUpdate);
 fseek($fp, 0);
-$headers = array(
-    'Accept: application/json',
-    'Content-Type: application/json',
-);
+
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, SHOPIFY_URL . $shopifyParamsURL);
 curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);

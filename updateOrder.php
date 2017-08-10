@@ -29,8 +29,7 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
   $responseArr = json_decode($response, true);
   var_dump($responseArr);
 
-  if($response==false && array_key_exists('order',$responseArr) &&
-  array_key_exists('id', $responseArr['order'])){
+  if($response==false or !array_key_exists('order',$responseArr) ){
     echo json_encode(array("success" => false, 'response'=> $response)));
     exit;
   }

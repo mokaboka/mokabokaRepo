@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 //global parameter
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
+//header('content-type: application/json; charset=utf-8');
 
 
 define('SHOPIFY_URL', "https://c405ef226e3e07c4eb80fcbe1b85712d:61f81d985ec32c6f6c674b7e809c1e19@selfmadeclub.myshopify.com/admin/orders.json");
@@ -28,7 +29,7 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
   $responseArr = json_decode($response, true);
   var_dump($responseArr);
   if($response==false && array_key_exists('order',$responseArr) && array_key_exists('id', $responseArr['order'])){
-    echo json_encode(array("success" => false, 'response'=> $response));
+    echo json_encode(array("success" => false, 'response'=> $response)));
     exit;
   }
   else{
@@ -68,11 +69,11 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
     $xml_response = curl_exec($ch);
     if($xml_response!=false){
-        echo(json_encode(array('success' => true, 'response'=> $xml_response));
+        echo(json_encode(array('success' => true, 'response'=> $xml_response)));
         exit;
     }
   }
 }else{ // no passed params
-  echo(json_encode(array('success' => false, 'response'=> null));
+  echo(json_encode(array('success' => false, 'response'=> null)));
   exit;
 }

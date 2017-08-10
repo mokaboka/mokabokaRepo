@@ -3,6 +3,7 @@
 //global parameter
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
+header ("Access-Control-Allow-Headers: *") ;
 //header('content-type: application/json; charset=utf-8');
 
 define('SHOPIFY_URL', "https://c405ef226e3e07c4eb80fcbe1b85712d:61f81d985ec32c6f6c674b7e809c1e19@selfmadeclub.myshopify.com/admin/orders");

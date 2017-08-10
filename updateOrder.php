@@ -2,6 +2,9 @@
 
 error_reporting(0);
 //global parameter
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');
+
 
 define('SHOPIFY_URL', "https://c405ef226e3e07c4eb80fcbe1b85712d:61f81d985ec32c6f6c674b7e809c1e19@selfmadeclub.myshopify.com/admin/orders.json");
 ////////////////////////////////////////////////////////////////
@@ -13,9 +16,9 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
       'Content-Type: application/json',
   );
 //get The order ID
-
+$orderNumber = str_replace("#","",$orderDataSet['order_number']);
 $ch1 = curl_init();
-$shopifyParamsURL = "?name=".$orderDataSet['order_number']."&status=any";
+$shopifyParamsURL = "?name=".$orderNumber."&status=any";
 curl_setopt($ch1, CURLOPT_URL, SHOPIFY_URL . $shopifyParamsURL);
 curl_setopt($ch1, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch1, CURLOPT_TIMEOUT, 15);
@@ -27,6 +30,7 @@ if($response==false){
   exit;
 }
 else{
+  echo 'heeeeeee';
 var_dump($response);
 exit;
 //$shopifyParamsURL = $orderDataSet['id'] . ".json";

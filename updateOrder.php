@@ -27,18 +27,14 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
   curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, 2);
   $response = curl_exec($ch1);
   $responseArr = json_decode($response, true);
-  foreach ($responseArr as $k=>$v){
-      echo $v; // etc.
-  }
-  exit;
 
-}/*
+
+
   if($response==false or !array_key_exists('order',$responseArr) ){
     echo json_encode(array("success" => false, 'response'=> $response)));
     exit;
   }
   else{
-    var_dump($responseArr['order']['id']);
     //$shopifyParamsURL = $orderDataSet['id'] . ".json";
 
     //array post Parameter

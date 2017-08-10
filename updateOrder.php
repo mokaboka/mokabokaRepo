@@ -28,6 +28,7 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
   $response = curl_exec($ch1);
   $responseArr = json_decode($response, true);
   var_dump($responseArr);
+  exit;
 
   if($response==false or !array_key_exists('order',$responseArr) ){
     echo json_encode(array("success" => false, 'response'=> $response)));

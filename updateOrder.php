@@ -27,7 +27,9 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
   curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, 2);
   $response = curl_exec($ch1);
   $responseArr = json_decode($response, true);
-  var_dump($responseArr);
+  foreach ($responseArr as $k=>$v){
+      echo $v; // etc.
+  }
   exit;
 
 }/*

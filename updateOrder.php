@@ -16,58 +16,59 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
       'Content-Type: application/json',
   );
 //get The order ID
-$orderNumber = str_replace("#","",$orderDataSet['order_number']);
-$ch1 = curl_init();
-$shopifyParamsURL = "?name=".$orderNumber."&status=any";
-curl_setopt($ch1, CURLOPT_URL, SHOPIFY_URL . $shopifyParamsURL);
-curl_setopt($ch1, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch1, CURLOPT_TIMEOUT, 15);
-curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, 2);
-$response = curl_exec($ch1);
-if($response==false){
-  echo 'errro';
-  exit;
-}
-else{
-  echo 'heeeeeee';
-var_dump($response);
-exit;
-//$shopifyParamsURL = $orderDataSet['id'] . ".json";
+  $orderNumber = str_replace("#","",$orderDataSet['order_number']);
+  $ch1 = curl_init();
+  $shopifyParamsURL = "?name=".$orderNumber."&status=any";
+  curl_setopt($ch1, CURLOPT_URL, SHOPIFY_URL . $shopifyParamsURL);
+  curl_setopt($ch1, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($ch1, CURLOPT_TIMEOUT, 15);
+  curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, 2);
+  $response = curl_exec($ch1);
+  if($response==false){
+    echo 'errro';
+    exit;
+  }
+  else{
+    echo 'heeeeeee';
+    var_dump($response);
+    exit;
+    //$shopifyParamsURL = $orderDataSet['id'] . ".json";
 
-//array post Parameter
-$postNoteData ['order']['id'] = $orderDataSet['order_ID'];
-$postNoteData ['order']['note_attributes']['hat_size'] = $orderDataSet['hat_size'];
-$postNoteData ['order']['note_attributes']['shirt_size'] = $orderDataSet['shirt_size'];
-$postNoteData ['order']['note_attributes']['website_address'] = $orderDataSet['website_address'];
+    //array post Parameter
+    $postNoteData ['order']['id'] = $orderDataSet['order_ID'];
+    $postNoteData ['order']['note_attributes']['hat_size'] = $orderDataSet['hat_size'];
+    $postNoteData ['order']['note_attributes']['shirt_size'] = $orderDataSet['shirt_size'];
+    $postNoteData ['order']['note_attributes']['website_address'] = $orderDataSet['website_address'];
 
-/**/
-////Send to shopify to update Order
+    /**/
+    ////Send to shopify to update Order
 
-$orderToUpdate = json_encode($postNoteData);
+    $orderToUpdate = json_encode($postNoteData);
 
-/** use a max of 256KB of RAM before going to disk*/
+    /** use a max of 256KB of RAM before going to disk*/
 
 
-$fp = fopen('php://temp/maxmemory:256000', 'w');
-if (!$fp) {
-    die('could not open temp memory data');
-}
-fwrite($fp, $orderToUpdate);
-fseek($fp, 0);
+    $fp = fopen('php://temp/maxmemory:256000', 'w');
+    if (!$fp) {
+        die('could not open temp memory data');
+    }
+    fwrite($fp, $orderToUpdate);
+    fseek($fp, 0);
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, SHOPIFY_URL . $shopifyParamsURL);
-curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_INFILE, $fp); // file pointer
-curl_setopt($ch, CURLOPT_INFILESIZE, strlen($orderToUpdate));
-curl_setopt($ch, CURLOPT_PUT, 1);
-curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-$xml_response = curl_exec($ch);
-if($xml_response!=false){
-    die(json_encode(array('success' => $xml_response, 'orderInfo'=> $postNoteData)));
-}
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, SHOPIFY_URL . $shopifyParamsURL);
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_INFILE, $fp); // file pointer
+    curl_setopt($ch, CURLOPT_INFILESIZE, strlen($orderToUpdate));
+    curl_setopt($ch, CURLOPT_PUT, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+    $xml_response = curl_exec($ch);
+    if($xml_response!=false){
+        die(json_encode(array('success' => $xml_response, 'orderInfo'=> $postNoteData)));
+    }
+  }
 }

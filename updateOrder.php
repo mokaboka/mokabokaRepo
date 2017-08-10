@@ -33,7 +33,8 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
   if($response==false or !array_key_exists('order',$responseArr) ){
     echo json_encode(array("success" => false, 'response'=> $response)));
     exit;
-  }
+  }}
+  /*
   else{
     //$shopifyParamsURL = $orderDataSet['id'] . ".json";
 
@@ -74,7 +75,4 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
         exit;
     }
   }
-}else{ // no passed params
-  echo(json_encode(array('success' => false, 'response'=> null)));
-  exit;
 }

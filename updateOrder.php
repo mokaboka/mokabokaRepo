@@ -30,11 +30,15 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
 
 
 
-  if($response==false or !array_key_exists('order',$responseArr) ){
+  if($response==false){
     echo json_encode(array("success" => false, 'response'=> $response)));
     exit;
-  }}
-  /*
+  }
+  else {
+    echo 'hhhhhhhh';
+    exit;
+  }
+  }/*
   else{
     //$shopifyParamsURL = $orderDataSet['id'] . ".json";
 

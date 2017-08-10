@@ -7,10 +7,24 @@ define('SHOPIFY_URL', "https://c405ef226e3e07c4eb80fcbe1b85712d:61f81d985ec32c6f
 ////////////////////////////////////////////////////////////////
 
 $orderDataSet = json_decode(file_get_contents('php://input'), true);
+if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
 
+//get The order ID
 
-if(sizeof($orderDataSet) > 0 ){
+$ch1 = curl_init();
+$shopifyParamsURL = "?name=".$orderDataSet['order_number']."&status=any";
+curl_setopt($ch1, CURLOPT_URL, SHOPIFY_URL . $shopifyParamsURL);
+curl_setopt($ch1, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch1, CURLOPT_TIMEOUT, 15);
+curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, 2);
+$response = curl_exec($ch1);
+if($response==false){
 
+}
+else{
+var_dump($response);
+exit;
 //$shopifyParamsURL = $orderDataSet['id'] . ".json";
 
 //array post Parameter

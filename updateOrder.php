@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ALL);
+error_reporting(0);
 //global parameter
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
@@ -28,7 +28,9 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
   $response = curl_exec($ch1);
   $responseArr = json_decode($response, true);
   var_dump($responseArr);
-  if($response==false && array_key_exists('order',$responseArr) && array_key_exists('id', $responseArr['order'])){
+
+  if($response==false && array_key_exists('order',$responseArr) &&
+  array_key_exists('id', $responseArr['order'])){
     echo json_encode(array("success" => false, 'response'=> $response)));
     exit;
   }

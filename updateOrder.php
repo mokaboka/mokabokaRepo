@@ -30,6 +30,7 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
   var_dump($responseArr);
   exit;
 
+}/*
   if($response==false or !array_key_exists('order',$responseArr) ){
     echo json_encode(array("success" => false, 'response'=> $response)));
     exit;
@@ -44,12 +45,12 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
     $postNoteData ['order']['note_attributes']['shirt_size'] = $orderDataSet['shirt_size'];
     $postNoteData ['order']['note_attributes']['website_address'] = $orderDataSet['website_address'];
 
-    /**/
+
     ////Send to shopify to update Order
 
     $orderToUpdate = json_encode($postNoteData);
 
-    /** use a max of 256KB of RAM before going to disk*/
+    //use a max of 256KB of RAM before going to disk
 
 
     $fp = fopen('php://temp/maxmemory:256000', 'w');

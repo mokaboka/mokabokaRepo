@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(0);
+error_reporting(E_ALL);
 //global parameter
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
@@ -68,7 +68,11 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
     $xml_response = curl_exec($ch);
     if($xml_response!=false){
-        die(json_encode(array('success' => true, 'response'=> $xml_response));
+        echo(json_encode(array('success' => true, 'response'=> $xml_response));
+        exit;
     }
   }
+}else{ // no passed params
+  echo(json_encode(array('success' => false, 'response'=> null));
+  exit;
 }

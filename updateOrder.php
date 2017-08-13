@@ -110,7 +110,7 @@ if(sizeof($orderDataSet) > 0 && $orderDataSet['order_number'] != ''){
   );
 
 //array post Parameter
-$postNoteData ['order']['id'] = $responseArr['orders'][0]['id'] ;
+$postNoteData ['order']['id'] = $orderDataSet['order_number'];
 $postNoteData ['order']['note_attributes']['hat_size'] = $orderDataSet['hat_size'];
 $postNoteData ['order']['note_attributes']['shirt_size'] = $orderDataSet['shirt_size'];
 $postNoteData ['order']['note_attributes']['website_address'] = $orderDataSet['website_address'];
@@ -147,14 +147,14 @@ $options = array(
   CURLOPT_PUT => 1,
 
 );
-$shopifyParamsURL = "/".$responseArr['orders'][0]['id'].".json";
+$shopifyParamsURL = "/".$orderDataSet['order_number'].".json";
 $ch = curl_init(SHOPIFY_URL.$shopifyParamsURL);
 curl_setopt_array($ch, $options);
 
 $response = curl_exec($ch);
 curl_close($ch);
-if($response!=false){
-    echo json_encode(array('success' => true, 'response'=> $response));
-    exit;
-}
+  if($response!=false){
+      echo json_encode(array('success' => true, 'response'=> $response));
+      exit;
+  }
 }

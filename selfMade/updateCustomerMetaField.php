@@ -8,11 +8,12 @@ header ("Access-Control-Allow-Headers: *") ;
 ////////////////////////////////////////////////////////////////
 $customerDataSet = json_decode(file_get_contents('php://input'), true);
 //sample data
+/*
 $customerDataSet['customer_ID'] = '5661854865';
 $customerDataSet['shirtSizeField'] = 'XL';
 $customerDataSet['hatSizeField'] = 'XXL';
 $customerDataSet['webSiteAddressField'] = 'www.loqta.ps';
-
+*/
 define('SHOPIFY_MAIN_URL', "https://c405ef226e3e07c4eb80fcbe1b85712d:61f81d985ec32c6f6c674b7e809c1e19@selfmadeclub.myshopify.com/admin/customers/".$customerDataSet['customer_ID']."/");
 define('SHOPIFY_URL', SHOPIFY_MAIN_URL."metafields.json");
 $nameSpace = 'orders_params';
@@ -131,3 +132,4 @@ elseif(sizeof($updateMetaFieldsArr) > 0){
   $xml_response = curl_exec($ch);
   }
 }
+echo json_encode(array('msg' => 'successfully Updated'));

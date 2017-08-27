@@ -5,7 +5,6 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 header ("Access-Control-Allow-Headers: *") ;
 //header('content-type: application/json; charset=utf-8');
-
 ////////////////////////////////////////////////////////////////
 $customerDataSet = json_decode(file_get_contents('php://input'), true);
 //sample data
@@ -60,12 +59,12 @@ if(sizeof($updateMetaFieldsArr) > 0){
     }
     if($addOperation){
       $metaFieldToAdd = array(
-        'namespace': $nameSpace,
-        "key": $metaFieldKey,
-        "value": $customerDataSet[$metaFieldKey],
-        "value_type": "string"
+        'namespace' => $nameSpace,
+        "key" => $metaFieldKey,
+        "value" => $customerDataSet[$metaFieldKey],
+        "value_type" => "string"
       );
-      array_push($metaFieldToAdd, $addMetaFieldsArr);
+      array_push($addMetaFieldsArr, $metaFieldToAdd);
     }
   }
 
@@ -73,36 +72,38 @@ if(sizeof($updateMetaFieldsArr) > 0){
 // all in add operation
     foreach($metafieldsKeys as $metaFieldKey){
       $metaFieldToAdd = array(
-        'namespace': $nameSpace,
-        "key": $metaFieldKey,
-        "value": $customerDataSet[$metaFieldKey],
-        "value_type": "string"
+        'namespace' => $nameSpace,
+        "key" => $metaFieldKey,
+        "value"=> $customerDataSet[$metaFieldKey],
+        "value_type" => "string"
       );
-      array_push($metaFieldToAdd, $addMetaFieldsArr);
+      array_push(, $metaFieldToAdd);
     }
 
 }
 
-$fp = fopen('php://temp/maxmemory:256000', 'w');
-if (!$fp) {
-    die('could not open temp memory data');
-}
-fwrite($fp, json_encode($addMetaFieldsArr));
-fseek($fp, 0);
-$headers = array(
-    'Accept: application/json',
-    'Content-Type: application/json',
-);
+foreach($addMetaFieldsArr as $addMetaField){
+  $fp = fopen('php://temp/maxmemory:256000', 'w');
+  if (!$fp) {
+      die('could not open temp memory data');
+  }
+  fwrite($fp, json_encode(array('metafield' => $addMetaField)));
+  fseek($fp, 0);
+  $headers = array(
+      'Accept: application/json',
+      'Content-Type: application/json',
+  );
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $mainURL);
-curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_INFILE, $fp); // file pointer
-curl_setopt($ch, CURLOPT_INFILESIZE, strlen($addMetaFieldsArr));
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-$xml_response = curl_exec($ch);
-echo $xml_response;
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, SHOPIFY_URL);
+  curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($ch, CURLOPT_INFILE, $fp); // file pointer
+  curl_setopt($ch, CURLOPT_INFILESIZE, strlen($addMetaField));
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+  $xml_response = curl_exec($ch);
+  echo $xml_response;
+}

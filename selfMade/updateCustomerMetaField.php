@@ -8,7 +8,12 @@ header ("Access-Control-Allow-Headers: *") ;
 
 ////////////////////////////////////////////////////////////////
 $customerDataSet = json_decode(file_get_contents('php://input'), true);
+//sample data
 $customerDataSet['customer_ID'] = '5661854865';
+$customerDataSet['shirtSizeField'] = 'XL';
+$customerDataSet['hatSizeField'] = 'XL';
+$customerDataSet['webSiteAddressField'] = 'www.loqta.ps';
+
 define('SHOPIFY_URL', "https://c405ef226e3e07c4eb80fcbe1b85712d:61f81d985ec32c6f6c674b7e809c1e19@selfmadeclub.myshopify.com/admin/customers/".$customerDataSet['customer_ID']."/metafields.json");
 $nameSpace = 'orders_params';
 function checkThePubStatus($metaField){
@@ -94,8 +99,8 @@ curl_setopt($ch, CURLOPT_URL, $mainURL);
 curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_INFILE, $fp); // file pointer
-//curl_setopt($ch, CURLOPT_INFILESIZE, strlen($data));
-curl_setopt($ch, CURLOPT_PUT, 1);
+curl_setopt($ch, CURLOPT_INFILESIZE, strlen($addMetaFieldsArr));
+curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_TIMEOUT, 15);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);

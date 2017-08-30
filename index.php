@@ -53,17 +53,21 @@ $service = new Google_Service_Sheets($client);
 $range = 'OrdersBeforePaid!A:T';
 $response = $service->spreadsheets_values->get(SPREAD_SHEET_ID, $range);
 $values = $response->getValues();
-rsort($values);
+//rsort($values);
+$count = count($values) - 1;
+
 if (count($values) == 0) {
 } else {
-  foreach ($values as $row) {
+  for ($i=$count;$i >= 0; $i --) {
     // Print columns A and E, which correspond to indices 0 and 4.
-    if($row[3] == $orderDataSet['email']){
-        $rowData = $row;
+    if($values[$i][3] == $orderDataSet['email']){
+        $rowData = $values[$i];
         break;
+
     }
   }
 }
+
 if(sizeof($rowData) > 0 ){
 //array post Parameter
 $postOrderInfo = array();

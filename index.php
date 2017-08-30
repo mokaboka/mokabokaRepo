@@ -113,7 +113,7 @@ $values = array(
         ($rowData[16]!="")?$rowData[16]:"",
         ($rowData[17]!="")?$rowData[17]:"",
         ($rowData[18]!="")?$rowData[18]:"",
-    ($rowData[19]!="")?$rowData[19]:"",
+        ($rowData[19]!="")?$rowData[19]:"",
         ($rowData[20]!="")?$rowData[20]:"",
         ($rowData[21]!="")?$rowData[21]:""
  // Cell values ...
@@ -161,9 +161,8 @@ if($xml_response!=false){
 $range = 'OrdersBeforePaid!A2:V';
 
 // TODO: Assign values to desired properties of `requestBody`:
-$requestBody = new Google_Service_Sheets_ClearValuesRequest();
-
-$response = $service->spreadsheets_values->clear(SPREAD_SHEET_ID, $range, $requestBody);
+//$requestBody = new Google_Service_Sheets_ClearValuesRequest();
+///$response = $service->spreadsheets_values->clear(SPREAD_SHEET_ID, $range, $requestBody);
     echo "true";
     
 }  else {

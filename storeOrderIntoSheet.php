@@ -43,9 +43,9 @@ $values = array(
         ($data["Firstname"] !="")?$data["Firstname"]:" ",
         ($data["Lastname"] !="")?$data["Lastname"]:" ",
         date('d/m/Y', time()),
-       ($data["email"] !="")?$data["email"]:" ",
-       ($data["Child1Name"] !="")?$data["Child1Name"]:" ",
-       ($data["Child1Gender"] !="")?$data["Child1Gender"]:" ",
+        ($data["email"] !="")?$data["email"]:" ",
+        ($data["Child1Name"] !="")?$data["Child1Name"]:" ",
+        ($data["Child1Gender"] !="")?$data["Child1Gender"]:" ",
         ($data["Child1Birthdate"] !="")?$data["Child1Birthdate"]:" ",
         ($data["Child1HairColor"] !="")?$data["Child1HairColor"]:" ",
         ($data["Child1HairStyle"] !="")?$data["Child1HairStyle"]:" ",
@@ -61,8 +61,7 @@ $values = array(
         ($data["Child2Favoritecolor"] !="")?$data["Child2Favoritecolor"]:" ",
         ($data["Child2to1"] !="")?$data["Child2to1"]:" ",
         ($data["Dedication"] !="")?$data["Dedication"]:" ",
-    ($data["Image"] !="")?$data["Image"]:" "
- // Cell values ...
+        ($data["Image"] !="")?$data["Image"]:" "
     )
     // Additional rows ...
 );
